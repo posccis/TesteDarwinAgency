@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,9 @@ namespace DarwinProduct.Domain.Domains
         /// <summary>
         /// Nome do cliente
         /// </summary>
+        [Required]
+        [MinLength(2, ErrorMessage = "O nome do cliente deve possuir pelo menos 2 caracteres.")]
+        [MaxLength(2, ErrorMessage = "O nome do cliente deve possuir no máximo 100 caracteres.")]
         public string Cliente { get; set; }
         /// <summary>
         /// DAta do pedido
@@ -23,7 +27,7 @@ namespace DarwinProduct.Domain.Domains
         /// <summary>
         /// Valor Total do pedido
         /// </summary>
-        public decimal Valor { get; set; }
+        public decimal Total { get; set; }
         /// <summary>
         /// Lista de Itens do Pedido
         /// </summary>
