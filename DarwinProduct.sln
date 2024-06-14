@@ -5,6 +5,12 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarwinProduct.API", "DarwinProduct.API\DarwinProduct.API.csproj", "{740636E8-206C-4FE6-ADCC-63DCC3E55BEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarwinProduct.Domain", "DarwinProduct.Domain\DarwinProduct.Domain.csproj", "{530A5167-05B7-435F-B33B-13AD0F6D1857}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarwinProduct.Persistence", "DarwinProduct.Persistence\DarwinProduct.Persistence.csproj", "{66D1B1DF-83C2-487B-AADA-1A2FACA45B9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarwinProduct.Application", "DarwinProduct.Application\DarwinProduct.Application.csproj", "{AC7DC3CC-5069-4E6B-BB95-559D8538A0F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{740636E8-206C-4FE6-ADCC-63DCC3E55BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{740636E8-206C-4FE6-ADCC-63DCC3E55BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{740636E8-206C-4FE6-ADCC-63DCC3E55BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{530A5167-05B7-435F-B33B-13AD0F6D1857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{530A5167-05B7-435F-B33B-13AD0F6D1857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{530A5167-05B7-435F-B33B-13AD0F6D1857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{530A5167-05B7-435F-B33B-13AD0F6D1857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D1B1DF-83C2-487B-AADA-1A2FACA45B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D1B1DF-83C2-487B-AADA-1A2FACA45B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D1B1DF-83C2-487B-AADA-1A2FACA45B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D1B1DF-83C2-487B-AADA-1A2FACA45B9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7DC3CC-5069-4E6B-BB95-559D8538A0F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7DC3CC-5069-4E6B-BB95-559D8538A0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7DC3CC-5069-4E6B-BB95-559D8538A0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7DC3CC-5069-4E6B-BB95-559D8538A0F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
