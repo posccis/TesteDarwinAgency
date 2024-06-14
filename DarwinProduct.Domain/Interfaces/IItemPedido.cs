@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DarwinProduct.Domain.Domains;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,5 +29,9 @@ namespace DarwinProduct.Domain.Interfaces
         /// Produto
         /// </summary>
         public decimal Preco { get; set; }
+        /// <summary>
+        /// Navegação para o Pedido
+        /// </summary>
+        public Pedido Pedido { get; set; }
     }
 }

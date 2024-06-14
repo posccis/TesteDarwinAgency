@@ -27,6 +27,6 @@ namespace DarwinProduct.Domain.Domains
         /// <summary>
         /// Lista de Itens do Pedido
         /// </summary>
-        IEnumerable<ItemPedido> Items { get; set; }
+        public IEnumerable<ItemPedido> Items { get; set; }
     }
 }

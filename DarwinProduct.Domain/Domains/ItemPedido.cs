@@ -28,5 +28,9 @@ namespace DarwinProduct.Domain.Domains
         /// Produto
         /// </summary>
         public decimal Preco { get; set; }
+        /// <summary>
+        /// Navegação para o Pedido
+        /// </summary>
+        public Pedido Pedido { get; set; }
     }
 }
