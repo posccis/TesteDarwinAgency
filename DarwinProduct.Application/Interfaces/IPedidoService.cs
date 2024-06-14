@@ -11,8 +11,8 @@ namespace DarwinProduct.Application.Interfaces
     {
         Task InserirPedido(T pedido);
         Task AtualizaPeido(T pedido);
-        Task RemoverPedido(T pedido);
+        Task RemoverPedido(int id);
         Pedido ObtemPedidoPorId(int id);
-        IEnumerable<Pedido> GetPedidos();
+        IEnumerable<Pedido> ObtemTodosPedidos();
     }
 }
