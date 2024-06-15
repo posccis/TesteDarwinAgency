@@ -11,7 +11,7 @@ namespace DarwinProduct.Persistence.Context
     public class DarwinProductContext : DbContext
     {
         public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<ItemPedido> Itens { get; set; }
+        public DbSet<ItemPedido> ItemPedidos { get; set; }
 
         public DarwinProductContext(DbContextOptions op) : base(op) 
         {
