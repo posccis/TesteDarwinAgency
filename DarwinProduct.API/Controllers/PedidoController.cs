@@ -1,5 +1,7 @@
-﻿using DarwinProduct.Application.Interfaces;
+﻿using AutoMapper;
+using DarwinProduct.Application.Interfaces;
 using DarwinProduct.Domain.Domains;
+using DarwinProduct.Domain.DTOs;
 using DarwinProduct.Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +12,13 @@ namespace DarwinProduct.API.Controllers
     [ApiController]
     public class PedidoController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IPedidoService<Pedido> _pedidoService;
         private readonly IItemPedidoService<ItemPedido> _itemPedidoService;
 
-        public PedidoController(IPedidoService<Pedido> pedidoService, IItemPedidoService<ItemPedido> itemPedidoService)
+        public PedidoController(IPedidoService<Pedido> pedidoService, IItemPedidoService<ItemPedido> itemPedidoService, IMapper mapper)
         {
+            _mapper = mapper;
             _itemPedidoService = itemPedidoService;
             _pedidoService = pedidoService;
         }
@@ -25,12 +29,13 @@ namespace DarwinProduct.API.Controllers
         /// <param name="pedido"></param>
         /// <returns>Retorna um código http informando se foi inserido junto do objeto.</returns>
         [HttpPost]
-        public async Task<IActionResult> AdicionaPedido(Pedido pedido) 
+        public async Task<ActionResult<PedidoDTORequest>> AdicionaPedido(PedidoDTORequest pedidoDTO) 
         {
             try
             {
+                var pedido = _mapper.Map<Pedido>(pedidoDTO);
                 await _pedidoService.InserirPedido(pedido);
-                return CreatedAtAction(nameof(ObtemPedidoPorId), new { id = pedido.Id }, pedido);
+                return CreatedAtAction(nameof(ObtemPedidoPorId), new { id = pedido.Id }, pedidoDTO);
             }
             catch (ServiceException sExc)
             {
@@ -50,10 +55,11 @@ namespace DarwinProduct.API.Controllers
         /// <param name="pedido"></param>
         /// <returns>Retorna um código http informando se foi atualizado junto do objeto atualizado.</returns>
         [HttpPut]
-        public async Task<IActionResult> AtualizaPedido(Pedido pedido) 
+        public async Task<IActionResult> AtualizaPedido(PedidoDTORequest pedidoDTO) 
         {
             try
             {
+                var pedido = _mapper.Map<Pedido>(pedidoDTO);
                 await _pedidoService.AtualizarPedido(pedido);
                 return CreatedAtAction(nameof(ObtemPedidoPorId), new { id = pedido.Id }, pedido);
             }
@@ -76,12 +82,15 @@ namespace DarwinProduct.API.Controllers
         /// </summary>
         /// <returns>Lista com todos os pedidos</returns>
         [HttpGet]
-        public async Task<ActionResult<List<Pedido>>> ObtemTodosOsPedidos()
+        public async Task<ActionResult<List<PedidoDTOResponse>>> ObtemTodosOsPedidos()
         {
             try
             {
+
                 var pedidos = await _pedidoService.ObterTodosPedidos();
-                return Ok(pedidos);
+                var pedidosDTO = _mapper.Map<List<PedidoDTOResponse>>(pedidos);
+
+                return Ok(pedidosDTO);
             }
             catch (ServiceException sExc)
             {

@@ -32,6 +32,9 @@ builder.Services.AddDbContext<DarwinProductContext>(opt =>
 builder.Services.AddScoped<IPedidoService<Pedido>, PedidoService>();
 builder.Services.AddScoped<IItemPedidoService<ItemPedido>, ItemPedidoService>();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
