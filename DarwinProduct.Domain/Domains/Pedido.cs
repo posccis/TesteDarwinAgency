@@ -18,7 +18,7 @@ namespace DarwinProduct.Domain.Domains
         /// </summary>
         [Required]
         [MinLength(2, ErrorMessage = "O nome do cliente deve possuir pelo menos 2 caracteres.")]
-        [MaxLength(2, ErrorMessage = "O nome do cliente deve possuir no máximo 100 caracteres.")]
+        [MaxLength(100, ErrorMessage = "O nome do cliente deve possuir no máximo 100 caracteres.")]
         public string Cliente { get; set; }
         /// <summary>
         /// DAta do pedido
