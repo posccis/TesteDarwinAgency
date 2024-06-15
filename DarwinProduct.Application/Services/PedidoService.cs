@@ -2,6 +2,7 @@
 using DarwinProduct.Domain.Domains;
 using DarwinProduct.Domain.Exceptions;
 using DarwinProduct.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +18,13 @@ namespace DarwinProduct.Application.Services
         {
             _darwinContext = darwinContext;
         }
-        public async Task AtualizaPeido(Pedido pedido)
+        public async Task AtualizarPedido(Pedido pedido)
         {
             try
             {
                 if (pedido is not null)
                 {
-                    if(ObtemPedidoPorId(pedido.Id) is not null)
+                    if(ObterPedidoPorId(pedido.Id) is not null)
                     {
                         _darwinContext.Pedidos.Update(pedido);
                         await _darwinContext.SaveChangesAsync();
@@ -50,11 +51,11 @@ namespace DarwinProduct.Application.Services
             }
         }
 
-        public IEnumerable<Pedido> ObtemTodosPedidos()
+        public async Task<List<Pedido>> ObterTodosPedidos()
         {
             try
             {
-                return _darwinContext.Pedidos;
+                return await _darwinContext.Pedidos.Include(p => p.Items).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -69,7 +70,7 @@ namespace DarwinProduct.Application.Services
             {
                 if(pedido != null)
                 {
-                    if(ObtemPedidoPorId(pedido.Id) == null)
+                    if(ObterPedidoPorId(pedido.Id) == null)
                     {
                         _darwinContext.Pedidos.Add(pedido);
                         await _darwinContext.SaveChangesAsync();
@@ -96,11 +97,11 @@ namespace DarwinProduct.Application.Services
             }
         }
 
-        public Pedido ObtemPedidoPorId(int id)
+        public async Task<Pedido> ObterPedidoPorId(int id)
         {
             try
             {
-                var pedido = _darwinContext.Pedidos.FirstOrDefault(p => p.Id == id);
+                var pedido = await _darwinContext.Pedidos.Include(p => p.Items).FirstAsync(p => p.Id == id);
                 
                 return pedido;
             }
@@ -115,7 +116,7 @@ namespace DarwinProduct.Application.Services
         {
             try
             {
-                var pedido = ObtemPedidoPorId(id);
+                var pedido = ObterPedidoPorId(id);
                 if(pedido is not null)
                 {
                     _darwinContext.Remove(pedido);

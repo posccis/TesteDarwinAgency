@@ -21,7 +21,7 @@ namespace DarwinProduct.Application.Services
         {
             try
             {
-                return _darwinContext.Itens.Where(i => i.PedidoId == idPedido).AsEnumerable();
+                return _darwinContext.ItemPedidos.Where(i => i.PedidoId == idPedido).AsEnumerable();
                 
             }
             catch (Exception ex)

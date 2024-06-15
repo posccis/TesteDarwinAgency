@@ -10,9 +10,9 @@ namespace DarwinProduct.Application.Interfaces
     public interface IPedidoService<T> where T : Pedido
     {
         Task InserirPedido(T pedido);
-        Task AtualizaPeido(T pedido);
+        Task AtualizarPedido(T pedido);
         Task RemoverPedido(int id);
-        Pedido ObtemPedidoPorId(int id);
-        IEnumerable<Pedido> ObtemTodosPedidos();
+        Task<T> ObterPedidoPorId(int id);
+        Task<List<T>> ObterTodosPedidos();
     }
 }
