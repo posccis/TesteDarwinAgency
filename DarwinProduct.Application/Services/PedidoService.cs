@@ -1,6 +1,9 @@
-﻿using DarwinProduct.Application.Interfaces;
+﻿using AutoMapper;
+using DarwinProduct.Application.Interfaces;
 using DarwinProduct.Domain.Domains;
+using DarwinProduct.Domain.DTOs;
 using DarwinProduct.Domain.Exceptions;
+using DarwinProduct.Domain.Profiles;
 using DarwinProduct.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -70,15 +73,11 @@ namespace DarwinProduct.Application.Services
             {
                 if(pedido != null)
                 {
-                    if(ObterPedidoPorId(pedido.Id) == null)
-                    {
-                        _darwinContext.Pedidos.Add(pedido);
-                        await _darwinContext.SaveChangesAsync();
-                    }
-                    else
-                    {
-                        throw new ServiceException("Já existe um pedido cadastrado com esse id.");
-                    }
+                    
+                    pedido.Total = pedido.Items.Sum(i => i.Preco * i.QuantidadeDeProduto);
+
+                    _darwinContext.Pedidos.Add(pedido);
+                    await _darwinContext.SaveChangesAsync();
                 }
                 else
                 {
